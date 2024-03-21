@@ -1,11 +1,9 @@
 package com.simpleStock.sys.domain.subscription;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.simpleStock.sys.domain.subscriptionUser.SubcriptionUser;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Table(name = "subscription")
 @Entity(name = "Subscription")
@@ -20,6 +18,6 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idsubscription;
 
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
-    private LocalDateTime startDate, finishDate;
+    @OneToMany(mappedBy = "subscription")
+    private List<SubcriptionUser> subcriptionUsers;
 }

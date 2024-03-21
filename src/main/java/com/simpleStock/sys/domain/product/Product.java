@@ -1,8 +1,11 @@
 package com.simpleStock.sys.domain.product;
 
+import com.simpleStock.sys.domain.oderProduct.OrderProduct;
 import com.simpleStock.sys.domain.stock.Stock;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name = "product")
 @Entity(name = "Product")
@@ -22,4 +25,7 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idstock")
     private Stock stock;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderProduct> orderProducts;
 }
